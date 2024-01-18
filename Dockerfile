@@ -55,6 +55,9 @@ COPY nginx.conf /etc/nginx/sites-available/default
 # Set working directory
 WORKDIR /var/www/html
 
+# Copy application source code
+COPY . /var/www/html
+
 # Install Composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
     && composer update
@@ -62,9 +65,6 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
 # Set permissions
 RUN chown -R www-data:www-data storage/ \
     && php artisan key:generate
-
-# Copy application source code
-COPY . /var/www/html
 
 # Expose port 80
 EXPOSE 80
