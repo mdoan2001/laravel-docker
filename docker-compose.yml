@@ -4,7 +4,7 @@ services:
   webserver:
     build: .
     ports:
-      - '7000:80'
+      - '80:80'
     volumes:
       - ./:/var/www/html
     depends_on:
@@ -18,6 +18,6 @@ services:
       MYSQL_USER: laravel
       MYSQL_PASSWORD: laravel
     ports:
-      - "3333:3306"
+      - "3306:3306"
     volumes:
       - "./data/db:/var/lib/mysql"
